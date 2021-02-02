@@ -1,8 +1,0 @@
-1. Ve viec config SQL : 
-
-t de san file sqljdbc4-4.0.jar nay o san o C cua laptop va cai, cac ong muon dung dc 
-thi phai cop cai nay vao cmd va chay
-mvn install:install-file -Dfile=C:\sqljdbc4-4.0.jar -DgroupId=com.oracle -DartifactId=sqljdbc4-4.0 -Dversion=4.0 -Dpackaging=jar
-
-chay xong neu trong thu muc Dependencies co file jar ko co cham than tuc la thanh cong, cac ong chay thu ham main t bo
-o package jdbc , neu conection is succesfull va ra mot dai ID tuc la oke, con ko la faild day, nho bao cho t biet
