@@ -13,4 +13,11 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+    
+    <properties>
+  <sonar.projectKey>LAB1-SoftwareTest_SaleManagement</sonar.projectKey>
+  <sonar.organization>lab1-softwaretest</sonar.organization>
+  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+</properties>
+    
 </project>
