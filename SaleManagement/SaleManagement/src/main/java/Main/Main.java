@@ -1,3 +1,5 @@
+package Main;
+
 
 import Admin.AdminController;
 import Common.UserRole;
@@ -14,7 +16,6 @@ import Utilities.UserDataIO;
 import Utilities.Validate;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,9 +36,7 @@ public class Main {
     static ProductDataIO productDataIO;
     static OrderDataIO orderDataIO;
 
-    static SimpleDateFormat sp;
-
-    public static void Intilizacontructor() {
+    public static void intilizacontructor() {
         validate = new Validate();
 
         userController = new UserController();
@@ -49,27 +48,16 @@ public class Main {
         productDataIO = new ProductDataIO();
         orderDataIO = new OrderDataIO();
 
-        sp = new SimpleDateFormat("MM/dd/yyyy");
     }
 
     public static void initData() throws ParseException {
         users = new ArrayList<>();
         products = new ArrayList<>();
         orders = new ArrayList<>();
-
-//        users.add(new User("admin1","admin1", "admin1", UserRole.ADMIN));
-//        users.add(new User("sale1","sale1", "sale1", UserRole.SALE));
-//        
-//        products.add(new Product(0, "product_test", 10, 120, "origin_test"));
-//        orders.add(new Order("order1", sp.parse("02/03/2000"), "sale1", " Completed", products, 100));
-//
-//        userDataIO.writeData(users);
-//        productDataIO.writeData(products);
-//        orderDataIO.writeData(orders);
     }
 
     public static void main(String[] args) throws ParseException {
-        Intilizacontructor();
+        intilizacontructor();
         initData();
         loginMenu();
         mainMenu();

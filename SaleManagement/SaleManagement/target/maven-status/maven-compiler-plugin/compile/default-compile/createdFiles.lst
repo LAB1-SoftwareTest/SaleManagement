@@ -9,13 +9,13 @@ Admin\AdminView.class
 Utilities\OrderDataIO.class
 User\UserController.class
 Product\Product.class
-Main.class
 User\UserView.class
 Sale\Sale.class
 Utilities\ProductDataIO.class
 Common\UserRole.class
 Admin\Admin.class
 Product\ProductView.class
+Main\Main.class
 User\User.class
 Admin\AdminController.class
 Sale\SaleController.class

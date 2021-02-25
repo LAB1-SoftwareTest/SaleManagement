@@ -1,6 +1,7 @@
 package Utilities;
 
 import Product.Product;
+import Product.ProductView;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,6 +16,7 @@ public final class Validate {
     static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
     static Pattern patternUsername = Pattern.compile("^[A-Za-z][A-Za-z0-9]{4,}$");
     static Pattern patternPassword = Pattern.compile("^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{6,}$");
+    ProductView productView;
 
     public String getPassword(String MSG) throws IOException {
         while (true) {
@@ -146,7 +148,7 @@ public final class Validate {
 
     public int getID() throws IOException {
         while (true) {
-            try {                
+            try {
                 int id = getINT("Enter your ID : ");
                 if (id >= 0) {
                     return id;
@@ -160,9 +162,11 @@ public final class Validate {
     }
 
     public static int checkIdExist(ArrayList<Product> list, int id) {
-        for (Product product : list) {
-            if (product.getProductId() == id) {
-                return id;
+        System.out.println("[ LIST STATUS ] : " + list);
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getQuantity()== id) {
+                System.out.println("[ ID ] : " +list.get(i).getQuantity() );
+                return i;
             }
         }
         return -1;

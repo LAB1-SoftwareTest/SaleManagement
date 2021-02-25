@@ -69,23 +69,17 @@ public class ProductController {
             Integer size;
             try {
                 size = productView.getProducts().size();
-                System.out.println("[ SIZE ] : "+size);
+                System.out.println("[STATUS SIZE : ]" + size);
+                System.out.println("[ SIZE ] : " + size);
             } catch (Exception e) {
-                size = 0;                
-                System.out.println("EX SIZE : " +size);
+                size = 0;
+                System.out.println("EX SIZE : " + size);
             }
             size = size + 1;
-            if (productView.getProducts() == null) {
-                product = new Product(size, name, price, quantity, origin);
-                System.out.println("[ AFTER NULL ] "+size);
-                productView.addProduct(product);
-                System.out.println("Successful!!!\n");
-            } else {
-                product = new Product(size, name, price, quantity, origin);
-                System.out.println("[ AFTER ADD ] "+size);
-                productView.addProduct(product);
-                System.out.println("Successful!!!\n");
-            }
+            product = new Product(size, name, price, quantity, origin);
+            System.out.println("[ AFTER ADD ] " + size);
+            productView.addProduct(product);
+            System.out.println("Successful!!!\n");
         } catch (IOException ex) {
             Logger.getLogger(ProductController.class.getName()).log(Level.SEVERE, null, ex);
         }
