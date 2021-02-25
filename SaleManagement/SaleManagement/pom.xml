@@ -5,19 +5,15 @@
     <artifactId>SaleManagement</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+    
     <dependencies>
                 
     </dependencies>
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
-    
-    <properties>
-  <sonar.projectKey>LAB1-SoftwareTest_SaleManagement</sonar.projectKey>
-  <sonar.organization>lab1-softwaretest</sonar.organization>
-  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-</properties>
+    </properties>       
     
 </project>
