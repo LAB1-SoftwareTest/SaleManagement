@@ -75,9 +75,9 @@ public class ProductController {
         if (checkIdExist != -1) {
             products.remove(checkIdExist);
             logger.debug("Delete successful !!!");
-//            for (int i = id - 1; i < products.size(); i++) {
-//                products.get(i).setProductId(products.get(i).getProductId() - 1);
-//            }
+           for (int i = id - 1; i < products.size(); i++) {
+               products.get(i).setProductId(products.get(i).getProductId() - 1);
+           }
         } else {
             logger.debug("Delete fail !!!");
         }
