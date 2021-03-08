@@ -192,8 +192,8 @@ public final class Validate {
     public static int checkIdExist(ArrayList<Product> list, int id) {
         logger.debug("[ LIST STATUS ] : " + list);
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getQuantity() == id) {
-                logger.debug("[ ID ] : " + list.get(i).getQuantity());
+            if (list.get(i).getProductId() == id) {
+                logger.debug("[ ID ] : " + list.get(i).getProductId());
                 return i;
             }
         }
