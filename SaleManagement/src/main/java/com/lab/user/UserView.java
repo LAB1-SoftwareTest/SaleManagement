@@ -1,33 +1,50 @@
+package com.lab.user;
 
-package User;
-
-import Utilities.UserDataIO;
-import Utilities.Validate;
+import com.lab.main.Main;
+import com.lab.utilities.UserDataIO;
+import com.lab.utilities.Validate;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
+public class UserView {
 
-public class UserController {
-
-    public static UserController userController = null;
+    public static UserView userController = null;
     private User user;
-    private UserDataIO userDataIO;
-    private Validate validate;
+    private final UserDataIO userDataIO;
+    private final Validate validate;
+    static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(UserView.class.getName());
+    static Properties properties;
+    static String log = "src\\main\\java\\com\\lab\\properties\\log4j.properties";
 
-    public UserController() {
+    public UserView() throws FileNotFoundException, IOException {
         userDataIO = new UserDataIO();
         validate = new Validate();
+        properties = new Properties();
+        try (FileInputStream fis = new FileInputStream(log)) {
+            try {
+                properties.load(fis);
+            } catch (FileNotFoundException ex) {
+                java.util.logging.Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                fis.close();
+            }
+        }
+        PropertyConfigurator.configure(properties);
     }
 
     public void setUser(User user) {
         this.user = user;
     }
 
-    public static UserController getInstance() {
+    public static UserView getInstance() throws IOException {
         if (userController == null) {
-            userController = new UserController();
+            userController = new UserView();
         }
         return userController;
     }
@@ -37,8 +54,8 @@ public class UserController {
     public Boolean login() {
         try {
             //Doc file
-            ArrayList<User> users = UserView.getInstance().getUsers();
-            System.out.println("---* MENU LOGIN *---");
+            ArrayList<User> users = UserController.getInstance().getUsers();
+            logger.debug("---* MENU LOGIN *---");
             //Read userInput
             String userName;
             userName = validate.getString("\nInput username: ");
@@ -57,14 +74,14 @@ public class UserController {
 
             return (user != null);
 
-        } catch (IOException ex) {
-            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return false;
     }
 
-    public void logout() {
+    public void logerr() {
         this.user = null;
     }
 
@@ -72,11 +89,11 @@ public class UserController {
 
         while (true) {
             try {
-                System.out.println("--------------------------------");
-                System.out.println("CHANGE PASSWORD");
-                System.out.println("1. Change Password");
-                System.out.println("0. Cancel");
-                System.out.println("--------------------------------");
+                logger.debug("--------------------------------");
+                logger.debug("CHANGE PASSWORD");
+                logger.debug("1. Change Password");
+                logger.debug("0. Cancel");
+                logger.debug("--------------------------------");
 
                 int choice = validate.getINT_LIMIT("Your choice: ", 0, 1);
 
@@ -96,33 +113,35 @@ public class UserController {
 
                                 if (confirmNewPassword.equals(newPassword)) {
                                     user.setPassword(newPassword);
-                                    UserView.getInstance().updateUser(user);
+                                    UserController.getInstance().updateUser(user);
 
-                                    System.out.println("Password changed successfully!!");
+                                    logger.debug("Password changed successfully!!");
                                 } else {
-                                    System.out.println("Passwords don't match!!");
+                                    logger.debug("Passwords don't match!!");
                                 }
 
                             } else {
-                                System.out.println("Wrong password!!");
+                                logger.debug("Wrong password!!");
                             }
 
                         }
                         break;
+                    default:
+                        break;
                 }
 
             } catch (IOException ex) {
-                Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
 
     private static void printLoginMenu() {
-        System.out.println("--------------------------------");
-        System.out.println("Welcome to Sale Management Program");
-        System.out.println("1. Login");
-        System.out.println("0. Exit");
-        System.out.println("--------------------------------");
+        logger.debug("--------------------------------");
+        logger.debug("Welcome to Sale Management Program");
+        logger.debug("1. Login");
+        logger.debug("0. Exit");
+        logger.debug("--------------------------------");
     }
 
     public User getLoggedInUser() {

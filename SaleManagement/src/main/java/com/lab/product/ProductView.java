@@ -1,63 +1,82 @@
-package Product;
+package com.lab.product;
 
-import Utilities.ProductDataIO;
-import Utilities.Validate;
+import com.lab.main.Main;
+import com.lab.utilities.ProductDataIO;
+import com.lab.utilities.Validate;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Properties;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 /**
  *
  * @author Admin
  */
-public class ProductController {
+public class ProductView {
 
-    public static ProductController productController = null;
+    private ProductView productController = null;
     private Product product;
-    private ProductDataIO productDataIO;
+    private final ProductDataIO productDataIO;
     private final Validate validate;
-    private ProductView productView;
+    private final ProductController productView;
     private ArrayList<Product> list_product;
+    static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(ProductView.class.getName());
+    static Properties properties;
+    static String log = "src\\main\\java\\com\\lab\\properties\\log4j.properties";
 
-    public ProductController() {
+    public ProductView() throws FileNotFoundException, IOException {
         productDataIO = new ProductDataIO();
         validate = new Validate();
-        productView = new ProductView();
+        productView = new ProductController();
+        properties = new Properties();
+        try (FileInputStream fis = new FileInputStream(log)) {
+            try {
+                properties.load(fis);
+            } catch (FileNotFoundException ex) {
+                java.util.logging.Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                fis.close();
+            }
+        }
+        PropertyConfigurator.configure(properties);
     }
 
-    public static ProductController getInstance() {
+    public ProductView getInstance() throws IOException {
         if (productController == null) {
-            productController = new ProductController();
+            productController = new ProductView();
         }
         return productController;
     }
 
     public void menu() {
-        System.out.println("--------------------------------");
-        System.out.println("Manage Product");
-        System.out.println("1. View");
-        System.out.println("2. Add");
-        System.out.println("3. Update");
-        System.out.println("4. Delete");
-        System.out.println("5. Back");
-        System.out.println("--------------------------------");
+        logger.debug("--------------------------------");
+        logger.debug("Manage Product");
+        logger.debug("1. View");
+        logger.debug("2. Add");
+        logger.debug("3. Update");
+        logger.debug("4. Delete");
+        logger.debug("5. Back");
+        logger.debug("--------------------------------");
     }
 
     public void displayProduct(ArrayList<Product> list) {
-        System.out.println("----------------------------------------------------------------------------");
+        logger.debug("----------------------------------------------------------------------------");
         if (list == null) {
-            System.out.println("==> LIST IS EMPTY");
+            logger.debug("==> LIST IS EMPTY");
             return;
         } else {
-            System.out.format("|%10s|%20s|%10s|%10s|%20s|\n", "id", "name", "price", "quantity", "origin");
+            System.err.format("|%10s|%20s|%10s|%10s|%20s|\n", "id", "name", "price", "quantity", "origin");
             list.forEach((p) -> {
-                System.out.format("|%10s|%20s|%10.2f|%10d|%20s|\n", p.getProductId(), p.getName(), p.getPrice(), p.getQuantity(), p.getOrigin());
+                System.err.format("|%10s|%20s|%10.2f|%10d|%20s|\n", p.getProductId(), p.getName(), p.getPrice(), p.getQuantity(), p.getOrigin());
             });
         }
-        System.out.println("----------------------------------------------------------------------------");
+        logger.debug("----------------------------------------------------------------------------");
     }
 
     public void add() {
@@ -69,25 +88,19 @@ public class ProductController {
             Integer size;
             try {
                 size = productView.getProducts().size();
-                System.out.println("[ SIZE ] : "+size);
+                logger.debug("[STATUS SIZE : ]" + size);
+                logger.debug("[ SIZE ] : " + size);
             } catch (Exception e) {
-                size = 0;                
-                System.out.println("EX SIZE : " +size);
+                size = 0;
+                logger.debug("EX SIZE : " + size);
             }
             size = size + 1;
-            if (productView.getProducts() == null) {
-                product = new Product(size, name, price, quantity, origin);
-                System.out.println("[ AFTER NULL ] "+size);
-                productView.addProduct(product);
-                System.out.println("Successful!!!\n");
-            } else {
-                product = new Product(size, name, price, quantity, origin);
-                System.out.println("[ AFTER ADD ] "+size);
-                productView.addProduct(product);
-                System.out.println("Successful!!!\n");
-            }
+            product = new Product(size, name, price, quantity, origin);
+            logger.debug("[ AFTER ADD ] " + size);
+            productView.addProduct(product);
+            logger.debug("Successful!!!\n");
         } catch (IOException ex) {
-            Logger.getLogger(ProductController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -96,7 +109,7 @@ public class ProductController {
             int id = (new Validate()).getINT("id: ");
             productView.deleteProduct(id);
         } catch (IOException ex) {
-            Logger.getLogger(ProductController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -108,9 +121,9 @@ public class ProductController {
             int quantity = (new Validate()).getINT("Quantity: ");
             String origin = (new Validate()).getString("Origin: ");
             productView.updateProduct(new Product(id, name, price, quantity, origin));
-            System.out.println("Successful!!!\n");
+            logger.debug("Successful!!!\n");
         } catch (IOException ex) {
-            Logger.getLogger(ProductController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -136,6 +149,8 @@ public class ProductController {
                         break;
                     case 5:
                         return;
+                    default:
+                        break;
                 }
             } catch (IOException ex) {
             }
@@ -155,10 +170,10 @@ public class ProductController {
             }
         });
 
-        System.out.println("Product group by the product category : ");
+        logger.debug("Product group by the product category : ");
         Set<String> set = map.keySet();
         set.forEach((key) -> {
-            System.out.println(key + "\t\t" + map.get(key));
+            logger.debug(key + "\t\t" + map.get(key));
         });
     }
 

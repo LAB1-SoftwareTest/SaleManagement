@@ -2,6 +2,7 @@ package Utilities;
 
 import Product.Product;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -17,12 +18,14 @@ public class ProductDataIO {
     public ArrayList<Product> readData() {
         ArrayList<Product> products = null;
         try {
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream("Product.dat"));
-            products = (ArrayList<Product>) in.readObject();
+            try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("Product.dat"))) {
+                products = (ArrayList<Product>) in.readObject();
+                return products;
+            }
         } catch (IOException | ClassNotFoundException e) {
-            products = new ArrayList<Product>();            
+
         }
-        return products;
+        return null;
     }
 
     public void writeData(List<Product> products) {
