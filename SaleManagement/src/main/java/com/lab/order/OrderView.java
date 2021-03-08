@@ -75,7 +75,7 @@ public class OrderView {
         logger.debug("--------------------------------");
     }
 
-    public void displayOrder() throws IOException {      
+    public void displayOrder() throws IOException {
         orders = orderDataIO.readData();
         logger.debug("----------------------------------------------------------------------------");
         System.err.format("|%20s|%15s|%20s|%10s|\n", "CustomerName", "OrderDate", "Sale'sUserCode", "Status");
@@ -277,5 +277,26 @@ public class OrderView {
         set.forEach((key) -> {
             logger.debug(key + "\t\t" + map.get(key));
         });
+    }
+
+    public HashMap viewOrderByGroup1() throws IOException {
+        orders = orderDataIO.readData();
+        HashMap<String, Double> map;
+        map = new HashMap();
+        for (Order i : orders) {
+            if (map.containsKey(i.getUserCode())) {
+                double price = map.get(i.getUserCode()) + i.getAmount();
+                map.put(i.getUserCode(), price);
+            } else {
+                map.put(i.getUserCode(), i.getAmount());
+            }
+        }
+
+        logger.debug("---------------- Orders group by sales ----------------");
+        Set<String> set = map.keySet();
+        for (String string : set) {
+            logger.debug(string + "\t\t" + map.get(string));
+        }
+        return map;
     }
 }

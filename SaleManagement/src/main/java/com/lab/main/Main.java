@@ -5,17 +5,13 @@
  */
 package com.lab.main;
 
-import com.lab.admin.Admin;
 import com.lab.admin.AdminView;
 import com.lab.role.UserRole;
 import com.lab.order.Order;
 import com.lab.order.OrderView;
 import com.lab.product.Product;
-import com.lab.product.ProductController;
 import com.lab.product.ProductView;
-import com.lab.sale.Sale;
 import com.lab.user.User;
-import com.lab.user.UserController;
 import com.lab.user.UserView;
 import com.lab.utilities.OrderDataIO;
 import com.lab.utilities.ProductDataIO;
@@ -44,7 +40,7 @@ public class Main {
     static OrderView orderView;
     static AdminView adminView;
     static ProductView productView;
-    
+
     static UserDataIO userDataIO;
     static ProductDataIO productDataIO;
     static OrderDataIO orderDataIO;
@@ -84,11 +80,23 @@ public class Main {
     public static void initData() throws ParseException {
         users = new ArrayList<>();
         products = new ArrayList<>();
+        products.add(new Product(1, "pro1", 10, 100, "or1"));
+        products.add(new Product(2, "pro2", 20, 100, "or2"));
+        products.add(new Product(3, "pro3", 30, 100, "or3"));
+        products.add(new Product(4, "pro4", 40, 100, "or4"));
+        products.add(new Product(5, "pro5", 50, 100, "or5"));
+        products.add(new Product(6, "pro6", 60, 100, "or6"));
+        products.add(new Product(7, "pro7", 70, 100, "or7"));
+        products.add(new Product(8, "pro8", 80, 100, "or8"));
+        products.add(new Product(9, "pro9", 90, 100, "or9"));
+        products.add(new Product(10, "pro10", 100, 100, "or10"));
+        productDataIO.writeData(products);
+
         orders = new ArrayList<>();
     }
 
     public static void main(String[] args) throws ParseException, IOException {
-        
+
         intilizacontructor();
         initData();
         loginMenu();

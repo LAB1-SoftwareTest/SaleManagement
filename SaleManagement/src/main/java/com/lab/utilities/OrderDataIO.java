@@ -49,6 +49,7 @@ public class OrderDataIO {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("Order.dat"))) {
             orders = (ArrayList<Order>) in.readObject();
         } catch (IOException | ClassNotFoundException e) {
+            orders = new ArrayList<>();
             logger.debug(e.getMessage());
         }
         return orders;
