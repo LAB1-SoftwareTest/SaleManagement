@@ -39,8 +39,6 @@ public class ProductController {
                 properties.load(fis);
             } catch (FileNotFoundException ex) {
                 java.util.logging.Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                fis.close();
             }
         }
         PropertyConfigurator.configure(properties);
@@ -69,31 +67,34 @@ public class ProductController {
         }
     }
 
-    public void deleteProduct(int id) {
+    public String deleteProduct(int id) {
         products = productDataIO.readData();
         int checkIdExist = Validate.checkIdExist(products, id);
         if (checkIdExist != -1) {
             products.remove(checkIdExist);
-            logger.debug("Delete successful !!!");
-           for (int i = id - 1; i < products.size(); i++) {
-               products.get(i).setProductId(products.get(i).getProductId() - 1);
-           }
-        } else {
-            logger.debug("Delete fail !!!");
+
+            for (int i = id - 1; i < products.size(); i++) {
+                products.get(i).setProductId(i+1);
+            }
+            productDataIO.writeData(products);
+            return "Delete Successful !!!";
         }
-        productDataIO.writeData(products);
+        return "Delete Fail !!!";
+
     }
 
-    public void updateProduct(Product productUpd) {
+    public String updateProduct(Product productUpd) {
         products = productDataIO.readData();
-        products.forEach((u) -> {
+        for(Product u:products) {
             if (u.getProductId() == productUpd.getProductId()) {
                 u.setName(productUpd.getName());
                 u.setPrice(productUpd.getPrice());
                 u.setQuantity(productUpd.getQuantity());
                 u.setOrigin(productUpd.getOrigin());
-            }
-        });
+            }else
+                return "Update Fail !!!";
+        }
         productDataIO.writeData(products);
+        return "Update Successful !!!";
     }
 }

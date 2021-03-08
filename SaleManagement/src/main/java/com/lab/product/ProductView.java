@@ -21,10 +21,10 @@ import org.apache.log4j.PropertyConfigurator;
 public class ProductView {
 
     private ProductView productController = null;
-    private Product product;
+    private static Product product;
     private final ProductDataIO productDataIO;
     private final Validate validate;
-    private final ProductController productView;
+    private static  ProductController productView;
     private ArrayList<Product> list_product;
     static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(ProductView.class.getName());
     static Properties properties;
@@ -65,21 +65,25 @@ public class ProductView {
         logger.debug("--------------------------------");
     }
 
-    public void displayProduct(ArrayList<Product> list) {
-        logger.debug("----------------------------------------------------------------------------");
+    public static String displayProduct(ArrayList<Product> list) {
+        String text=null;
+        text="----------------------------------------------------------------------------\n";
         if (list == null) {
-            logger.debug("==> LIST IS EMPTY");
-            return;
+            return text + "==> LIST IS EMPTY\n"+
+                    "----------------------------------------------------------------------------\n";
         } else {
-            System.err.format("|%10s|%20s|%10s|%10s|%20s|\n", "id", "name", "price", "quantity", "origin");
-            list.forEach((p) -> {
-                System.err.format("|%10s|%20s|%10.2f|%10d|%20s|\n", p.getProductId(), p.getName(), p.getPrice(), p.getQuantity(), p.getOrigin());
-            });
+            String format1 = String.format("|%10s|%20s|%10s|%10s|%20s|\n", "id", "name", "price", "quantity", "origin");
+            text+=format1;
+            for(Product p : list)
+            {
+                String format2 = String.format("|%10s|%20s|%10.2f|%10d|%20s|\n", p.getProductId(), p.getName(), p.getPrice(), p.getQuantity(), p.getOrigin());
+                text+=format2;
+            }
         }
-        logger.debug("----------------------------------------------------------------------------");
+        return text+"----------------------------------------------------------------------------\n";
     }
 
-    public void add() {
+    public static String add() {
         try {
             String name = (new Validate()).getString("Name: ");
             Double price = (new Validate()).getDOUBLE("Price: ");
@@ -88,8 +92,7 @@ public class ProductView {
             Integer size;
             try {
                 size = productView.getProducts().size();
-                logger.debug("[STATUS SIZE : ]" + size);
-                logger.debug("[ SIZE ] : " + size);
+                
             } catch (Exception e) {
                 size = 0;
                 logger.debug("EX SIZE : " + size);
@@ -98,33 +101,39 @@ public class ProductView {
             product = new Product(size, name, price, quantity, origin);
             logger.debug("[ AFTER ADD ] " + size);
             productView.addProduct(product);
-            logger.debug("Successful!!!\n");
+            return "Successful!!!\n";
         } catch (IOException ex) {
-            Logger.getLogger(ProductView.class.getName()).log(Level.SEVERE, null, ex);
+            return "fail!!!\n";
         }
     }
 
-    public void delete() {
+    public String delete() {
         try {
             int id = (new Validate()).getINT("id: ");
-            productView.deleteProduct(id);
+            return productView.deleteProduct(id);
         } catch (IOException ex) {
-            Logger.getLogger(ProductView.class.getName()).log(Level.SEVERE, null, ex);
+            return "Delete Fail !!!";
         }
     }
 
-    public void update() {
+    public String update() {
+        String name;
+        Double price;
+        int quantity;
+        String origin;
         try {
             int id = (new Validate()).getINT("id: ");
-            String name = (new Validate()).getString("Name: ");
-            Double price = (new Validate()).getDOUBLE("Price: ");
-            int quantity = (new Validate()).getINT("Quantity: ");
-            String origin = (new Validate()).getString("Origin: ");
-            productView.updateProduct(new Product(id, name, price, quantity, origin));
-            logger.debug("Successful!!!\n");
+            if((new Validate()).checkIdExist(list_product, id)!=-1){
+                name = (new Validate()).getString("Name: ");
+                price = (new Validate()).getDOUBLE("Price: ");
+                quantity = (new Validate()).getINT("Quantity: ");
+                origin = (new Validate()).getString("Origin: ");
+                return productView.updateProduct(new Product(id, name, price, quantity, origin));
+            }
+            
         } catch (IOException ex) {
-            Logger.getLogger(ProductView.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return "Update Fail !!!";
     }
 
     public void viewProduct() {
@@ -136,16 +145,16 @@ public class ProductView {
                 choice = validate.getINT_LIMIT("Your choice: ", 1, 5);
                 switch (choice) {
                     case 1:
-                        displayProduct(productView.getProducts());
+                        logger.debug(displayProduct(productView.getProducts()));
                         break;
                     case 2:
-                        add();
+                        logger.debug(add());
                         break;
                     case 3:
-                        update();
+                        logger.debug(update());
                         break;
                     case 4:
-                        delete();
+                        logger.debug(delete());
                         break;
                     case 5:
                         return;

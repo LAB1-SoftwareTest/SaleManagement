@@ -61,3 +61,129 @@ Your choice :
 Your choice : 
 
 THANK YOU ! WELCOME BACK ^_^
+Name: 
+Name: 
+Price: 
+[ LIST STATUS ] : [com.lab.product.Product@6833ce2c]
+[ LIST STATUS ] : [com.lab.product.Product@6833ce2c]
+[ LIST STATUS ] : [com.lab.product.Product@1fbc7afb]
+[ LIST STATUS ] : [com.lab.product.Product@1fbc7afb]
+[ ID ] : 1
+--------------------------------
+*** Welcome to Sale Management Program ***
+1. Login
+0. Exit
+--------------------------------
+Your choice : 
+
+---* MENU LOGIN *---
+
+Input username: 
+
+Input password: 
+LOGGED IN FAILED!!
+--------------------------------
+*** Welcome to Sale Management Program ***
+1. Login
+0. Exit
+--------------------------------
+Your choice : 
+
+---* MENU LOGIN *---
+
+Input username: 
+--------------------------------
+*** Welcome to Sale Management Program ***
+1. Login
+0. Exit
+--------------------------------
+Your choice : 
+
+---* MENU LOGIN *---
+
+Input username: 
+
+Input password: 
+LOGGED IN SUCCESSFULLY!!
+--------------------------------
+ADMIN PANEL
+1. View list, add, update, delete product
+2. Add, update, delete order details then update order status
+3. Query order information, including the total revenues, group by sales
+4. View list, add, update, delete user; change user’s password
+5. Query & print err the product statistics with following information, 
+group by the product category: id, name, avail, sold, cancelled
+6. Change password
+7. Logerr
+--------------------------------
+Your choice: 
+--------------------------------
+Manage Product
+1. View
+2. Add
+3. Update
+4. Delete
+5. Back
+--------------------------------
+Your choice: 
+----------------------------------------------------------------------------
+|        id|                name|     price|  quantity|              origin|
+|         1|            ban chai|      1.20|         2|            viet nam|
+----------------------------------------------------------------------------
+
+--------------------------------
+Manage Product
+1. View
+2. Add
+3. Update
+4. Delete
+5. Back
+--------------------------------
+Your choice: 
+--------------------------------
+ADMIN PANEL
+1. View list, add, update, delete product
+2. Add, update, delete order details then update order status
+3. Query order information, including the total revenues, group by sales
+4. View list, add, update, delete user; change user’s password
+5. Query & print err the product statistics with following information, 
+group by the product category: id, name, avail, sold, cancelled
+6. Change password
+7. Logerr
+--------------------------------
+Your choice: 
+--------------------------------
+*** Welcome to Sale Management Program ***
+1. Login
+0. Exit
+--------------------------------
+Your choice : 
+
+THANK YOU ! WELCOME BACK ^_^
+[ LIST STATUS ] : [com.lab.product.Product@1fbc7afb]
+[ ID ] : 1
+[ LIST STATUS ] : []
+[ LIST STATUS ] : []
+[ LIST STATUS ] : []
+--------------------------------
+*** Welcome to Sale Management Program ***
+1. Login
+0. Exit
+--------------------------------
+Your choice : 
+
+[ LIST STATUS ] : [com.lab.product.Product@4ec6a292]
+[ ID ] : 1
+[ LIST STATUS ] : []
+[ LIST STATUS ] : []
+[ LIST STATUS ] : []
+--------------------------------
+*** Welcome to Sale Management Program ***
+1. Login
+0. Exit
+--------------------------------
+Your choice : 
+
+[ LIST STATUS ] : [com.lab.product.Product@4ec6a292]
+[ ID ] : 1
+[ LIST STATUS ] : []
