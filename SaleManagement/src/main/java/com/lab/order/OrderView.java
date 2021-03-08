@@ -70,15 +70,17 @@ public class OrderView {
         logger.debug("2. Add");
         logger.debug("3. Update");
         logger.debug("4. Delete");
-        logger.debug("5. Back");
+        logger.debug("5. Display orders");
+        logger.debug("6. Back");
         logger.debug("--------------------------------");
     }
 
-    public void displayOrder(ArrayList<Order> list) {
+    public void displayOrder() throws IOException {      
+        orders = orderDataIO.readData();
         logger.debug("----------------------------------------------------------------------------");
         System.err.format("|%20s|%15s|%20s|%10s|\n", "CustomerName", "OrderDate", "Sale'sUserCode", "Status");
-        if (list != null) {
-            list.stream().map((o) -> {
+        if (orders != null) {
+            orders.stream().map((o) -> {
                 System.err.format("|%20s|%15s|%20s|%10s|\n", o.getCustomerName(), o.getOrderDate(), o.getUserCode(), o.getStatus());
                 return o;
             }).map((Order o) -> {
@@ -95,7 +97,7 @@ public class OrderView {
         logger.debug("----------------------------------------------------------------------------");
     }
 
-    public void add() {
+    public void add() throws IOException {
         try {
             String CustomerName = (new Validate()).getString("CustomerName: ");
             Date OrderDate = (new Validate()).getDate("OrderDate: ");
@@ -117,6 +119,9 @@ public class OrderView {
                             logger.debug("Dont have product with id %d" + id);
                         } else {
                             listProduct.add(p);
+                            order = new Order(CustomerName, OrderDate, UserCode, Status, listProduct);
+                            orders.add(order);
+                            new OrderController().addOrder(order);
                         }
                         break;
                     case 2:
@@ -228,7 +233,7 @@ public class OrderView {
         while (true) {
             try {
                 menu();
-                choice = validate.getINT_LIMIT("Your choice: ", 1, 5);
+                choice = validate.getINT_LIMIT("Your choice: ", 1, 6);
                 switch (choice) {
                     case 1:
                         updateStatus((new UserView()).getLoggedInUser());
@@ -243,6 +248,9 @@ public class OrderView {
                         delete();
                         break;
                     case 5:
+                        displayOrder();
+                        break;
+                    case 6:
                         return;
                 }
             } catch (IOException ex) {
