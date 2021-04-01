@@ -2452,3 +2452,215 @@ Your choice :
 Your choice : 
 
 THANK YOU ! WELCOME BACK ^_^
+--------------------------------
+*** Welcome to Sale Management Program ***
+1. Login
+0. Exit
+--------------------------------
+Your choice : 
+
+--------------------------------
+*** Welcome to Sale Management Program ***
+1. Login
+0. Exit
+--------------------------------
+Your choice : 
+
+---* MENU LOGIN *---
+
+Input username: 
+
+Input password: 
+LOGGED IN SUCCESSFULLY!!
+--------------------------------
+ADMIN PANEL
+1. View list, add, update, delete product
+2. Add, update, delete order details then update order status
+3. Query order information, including the total revenues, group by sales
+4. View list, add, update, delete user; change user’s password
+5. Query & print err the product statistics with following information, 
+group by the product category: id, name, avail, sold, cancelled
+6. Change password
+7. Logerr
+--------------------------------
+Your choice: 
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+Password changed successfully!!
+--------------------------------
+*** Welcome to Sale Management Program ***
+1. Login
+0. Exit
+--------------------------------
+Your choice : 
+
+---* MENU LOGIN *---
+
+Input username: 
+
+Input password: 
+LOGGED IN SUCCESSFULLY!!
+--------------------------------
+ADMIN PANEL
+1. View list, add, update, delete product
+2. Add, update, delete order details then update order status
+3. Query order information, including the total revenues, group by sales
+4. View list, add, update, delete user; change user’s password
+5. Query & print err the product statistics with following information, 
+group by the product category: id, name, avail, sold, cancelled
+6. Change password
+7. Logerr
+--------------------------------
+Your choice: 
+Wrong password!!
+Password changed successfully!!
+Wrong password!!
+Password changed successfully!!
+Wrong password!!
+Wrong password!!
+Wrong password!!
+Password changed successfully!!
+Wrong password!!
+Wrong password!!
+Wrong password!!
+Wrong password!!
+Password changed successfully!!
+Wrong password!!
+Wrong password!!
+Wrong password!!
+Wrong password!!
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+Password changed successfully!!
+---* MENU LOGIN *---
+Wrong password!!
+Wrong password!!
+Wrong password!!
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+--------------------------------
+*** Welcome to Sale Management Program ***
+1. Login
+0. Exit
+--------------------------------
+Your choice : 
+
+---* MENU LOGIN *---
+
+Input username: 
+
+Input password: 
+LOGGED IN SUCCESSFULLY!!
+--------------------------------
+ADMIN PANEL
+1. View list, add, update, delete product
+2. Add, update, delete order details then update order status
+3. Query order information, including the total revenues, group by sales
+4. View list, add, update, delete user; change user’s password
+5. Query & print err the product statistics with following information, 
+group by the product category: id, name, avail, sold, cancelled
+6. Change password
+7. Logerr
+--------------------------------
+Your choice: 
+--------------------------------
+CHANGE PASSWORD
+1. Change Password
+0. Cancel
+--------------------------------
+Your choice: 
+Valid input are in the range of[0, 1]. 
+Your choice: 
+Enter old password: 
+Wrong format! (Password >=6 char, include both number and char, not include any other type of char)
+Enter again: 
+--------------------------------
+*** Welcome to Sale Management Program ***
+1. Login
+0. Exit
+--------------------------------
+Your choice : 
+
+Wrong password!!
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+Password changed successfully!!
+---* MENU LOGIN *---
+Wrong password!!
+Wrong password!!
+Wrong password!!
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+Wrong password!!
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+Password changed successfully!!
+---* MENU LOGIN *---
+Wrong password!!
+Wrong password!!
+Wrong password!!
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+--------------------------------
+*** Welcome to Sale Management Program ***
+1. Login
+0. Exit
+--------------------------------
+Your choice : 
+
+---* MENU LOGIN *---
+
+Input username: 
+
+Input password: 
+LOGGED IN SUCCESSFULLY!!
+--------------------------------
+ADMIN PANEL
+1. View list, add, update, delete product
+2. Add, update, delete order details then update order status
+3. Query order information, including the total revenues, group by sales
+4. View list, add, update, delete user; change user’s password
+5. Query & print err the product statistics with following information, 
+group by the product category: id, name, avail, sold, cancelled
+6. Change password
+7. Logerr
+--------------------------------
+Your choice: 
+Product group by the product category : 
+pro1		1
+pro2		1
+pro3		1
+pro4		1
+pro10		1
+pro9		1
+pro5		1
+pro6		1
+pro7		1
+pro8		1
+--------------------------------
+ADMIN PANEL
+1. View list, add, update, delete product
+2. Add, update, delete order details then update order status
+3. Query order information, including the total revenues, group by sales
+4. View list, add, update, delete user; change user’s password
+5. Query & print err the product statistics with following information, 
+group by the product category: id, name, avail, sold, cancelled
+6. Change password
+7. Logerr
+--------------------------------
+Your choice: 
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+---* MENU LOGIN *---
+---* MENU LOGIN *---

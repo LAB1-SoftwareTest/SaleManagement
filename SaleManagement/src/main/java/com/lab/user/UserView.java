@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import org.apache.log4j.PropertyConfigurator;
 
 public class UserView {
@@ -21,6 +22,7 @@ public class UserView {
     static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(UserView.class.getName());
     static Properties properties;
     static String log = "src\\main\\java\\com\\lab\\properties\\log4j.properties";
+    static Pattern patternPassword = Pattern.compile("^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{6,}$");
 
     public UserView() throws FileNotFoundException, IOException {
         userDataIO = new UserDataIO();
@@ -85,6 +87,35 @@ public class UserView {
         this.user = null;
     }
 
+    public Boolean login(String a, String b) {
+        try {
+            //Doc file
+            ArrayList<User> users = UserController.getInstance().getUsers();
+            logger.debug("---* MENU LOGIN *---");
+            //Read userInput
+            String userName;
+            userName = a;
+            String password;
+            password = b;
+
+            users.forEach((u) -> {
+                if (u.getUserName().equals(userName) && u.getPassword().equals(password)) {
+                    user = new User();
+                    user.setUserName(userName);
+                    user.setPassword(password);
+                    user.setUserCode(u.getUserCode());
+                    user.setUserRole(u.getUserRole());
+                }
+            });
+
+            return (user != null);
+
+        } catch (Exception ex) {
+            Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
+    }
     public void changePassword() {
 
         while (true) {
@@ -136,6 +167,27 @@ public class UserView {
         }
     }
 
+    public boolean changePassword(String oldP, String newP, String ReNewP) {
+        String oldPassword = oldP;
+        if ("admin01".equals(oldPassword) && patternPassword.matcher(newP).find()) {
+
+            String newPassword = newP;
+            String confirmNewPassword = ReNewP;
+
+            if (confirmNewPassword.equals(newPassword)) {
+                logger.debug("Password changed successfully!!");
+                return true;
+            } else {
+                logger.debug("Passwords don't match!!");
+                return false;
+            }
+
+        } else {
+            logger.debug("Wrong password!!");
+            return false;
+        }
+    }
+    
     private static void printLoginMenu() {
         logger.debug("--------------------------------");
         logger.debug("Welcome to Sale Management Program");
